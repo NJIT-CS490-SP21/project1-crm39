@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href={{ url_for('static', filename= 'styles.css') }} />
+    </head>
+    
+    <body>
+        <!-- <b>HTML (test)</b> -->
+    </body>
+    
+    <ol>
+        {%for i in range(0, len)%}
+        <li>{{songs[i]}}</li>
+        {%endfor%}
+    </ol>
+</html>
