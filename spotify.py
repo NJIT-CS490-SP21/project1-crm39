@@ -12,7 +12,7 @@ def get_songs():
     
     songs = {}
     artist_ids = ('6TIYQ3jFPwQSRmorSezPxX', '6XyY86QOPPrYVGvF9ch6wz', '6C1ohJrd5VydigQtaGy5Wa')
-    artist_id = artist_ids[random.randint(0,2)]
+    artist_id = artist_ids[random.randint(0,len(artist_ids)-1)]
     
     auth_response = requests.post(AUTH_URL, {
         'grant_type': 'client_credentials',
@@ -33,17 +33,15 @@ def get_songs():
     
     for song in songs_json['tracks']:
         song_name = song['name']
-        print(song_name)
         song_artist = song['album']['artists'][0]['name']
-        print(song_artist)
         song_image = song['album']['images'][0]['url']
-        print(song_image)
         song_preview = song['preview_url']
-        print(song_preview)
+        
+        
         song_info = (song_artist, song_image, song_preview)
         
+        # Dictionary containing each song as key and it's information in list format as the value
         songs[song_name] = song_info
-        print(songs[song_name])
 
     return songs
     
