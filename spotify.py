@@ -1,15 +1,18 @@
 import requests
 import os
 from dotenv import load_dotenv, find_dotenv
+import random
 
 AUTH_URL = 'https://accounts.spotify.com/api/token'
-BASE_URL = 'https://api.spotify.com/v1/'
+BASE_URL = 'https://api.spotify.com/v1/artists/'
 
 load_dotenv(find_dotenv())
 
 def get_songs():
     
-    songs = []
+    songs = {}
+    artist_ids = ('6TIYQ3jFPwQSRmorSezPxX', '6XyY86QOPPrYVGvF9ch6wz', '6C1ohJrd5VydigQtaGy5Wa')
+    artist_id = artist_ids[random.randint(0,2)]
     
     auth_response = requests.post(AUTH_URL, {
         'grant_type': 'client_credentials',
@@ -24,13 +27,30 @@ def get_songs():
         'Authorization' : 'Bearer {token}'.format(token=access_token)
     }
     
-    songs_data = requests.get(BASE_URL + 'browse/new-releases?country=US&offset=0&limit=10', headers=headers)
+    songs_data = requests.get(BASE_URL + artist_id + '/top-tracks?market=US', headers=headers)
     
     songs_json = songs_data.json()
     
-    
-    for song in songs_json['albums']['items']:
-        songs.append(song['name'])
-        print(song['name'])
+    for song in songs_json['tracks']:
+        song_name = song['name']
+        print(song_name)
+        song_artist = song['album']['artists'][0]['name']
+        print(song_artist)
+        song_image = song['album']['images'][0]['url']
+        print(song_image)
+        song_preview = song['preview_url']
+        print(song_preview)
+        song_info = (song_artist, song_image, song_preview)
+        
+        songs[song_name] = song_info
+        print(songs[song_name])
 
     return songs
+    
+    # song name, artist, song-related image, preview URL
+    
+    # Linking Park: 6XyY86QOPPrYVGvF9ch6wz
+    
+    # MGK: 6TIYQ3jFPwQSRmorSezPxX
+    
+    # Joyner Lucas: 6C1ohJrd5VydigQtaGy5Wa
