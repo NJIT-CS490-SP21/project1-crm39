@@ -4,25 +4,37 @@
         <link rel="stylesheet" href={{ url_for('static', filename= 'styles.css') }} />
     </head>
     
+    <h1 id="artist">
+        Artist Name:
+    </h1>
+    
     <body>
         <!-- <b>HTML (test)</b> -->
     </body>
     
-    <ol>
+    
+    
+    <ul class='container' style="list-style-type:none;">
         {%for key, value in songs.items()%}
-        <li><img src={{value[1]}} style="width:50px;height50px"/> {{key}}</li>
-        <ul style="list-style-type:none;">
-            <li>Artist: {{value[0]}}</li>
-            <li>
-                <audio controls>
-                    <source src={{value[2]}}>
-                </audio>
-            </li>
-            <li>
-                <a href='{{value[3]}}'>Lyrics</a>
-            </li>
-        </ul>
+        <li class='box'>
+            {% if not artist %}
+                {% set artist = value[0] %}
+            {% endif %}
+            <img src={{value[1]}} style="width:120px;height120px"/> 
+            <ul style="list-style-type:none;">
+                <li>{{key}}</li>
+                <li>Artist: {{value[0]}}</li>
+                <li>
+                    <audio controls>
+                        <source src={{value[2]}}>
+                    </audio>
+                </li>
+                <li>
+                    <a href='{{value[3]}}'>Lyrics</a>
+                </li>
+            </ul>
+        </li>
         
         {%endfor%}
-    </ol>
+    </ul>
 </html>

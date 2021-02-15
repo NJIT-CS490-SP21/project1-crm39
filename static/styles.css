@@ -2,3 +2,32 @@ body {
     background-color: #3287a8;
     font-family: Arial;
 }
+
+.container {
+    height: 90vh;
+    display: inline-grid;
+    grid-template-columns: 19% 19% 19% 19% 19%;
+    text-align: center;
+    gap: 16px;
+}
+
+.box {
+    border: 3px solid #0207a8;
+    border-radius: 16px;
+    background-color: #59a5e3;
+    vertical-align: middle;
+    box-shadow: -6px 10px #475159;
+}
+
+li {
+    padding-bottom: 8px;
+}
+
+body, h1 {
+    padding:0px;
+    margin:0px;
+}
+
+audio {
+    width: 275px;
+}
