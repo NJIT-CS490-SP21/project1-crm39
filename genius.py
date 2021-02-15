@@ -3,22 +3,22 @@ import os
 from dotenv import load_dotenv, find_dotenv
 
 BASE_URL = 'https://api.genius.com/search'
+BASE_LINK_URL = 'https://genius.com'
 
 load_dotenv(find_dotenv())
 
-def get_lyrics():
+def get_lyrics(song_name):
     
-    #auth_response  = requests.get()
-    print('Hi')
+    song_name.replace(' ', '%20') # %20 is the space character for the get request
     
     headers = {
         'Authorization' : 'Bearer {token}'.format(token=os.getenv('GENIUS_ACCESS_TOKEN'))
     }
     
-    lyric_data = requests.get(BASE_URL + '?q=Stranger%20Things', headers=headers)
+    lyric_data = requests.get(BASE_URL + '?q=' + song_name, headers=headers)
     lyric_json = lyric_data.json();
     lyric_path=lyric_json['response']['hits'][0]['result']['path']
     
-    print(lyric_path)
-    lyric_link = BASE_URL + lyric_path
-    print(lyric_link)
+    lyric_link = BASE_LINK_URL + lyric_path
+    
+    return lyric_link

@@ -2,6 +2,7 @@ import requests
 import os
 from dotenv import load_dotenv, find_dotenv
 import random
+from genius import get_lyrics
 
 AUTH_URL = 'https://accounts.spotify.com/api/token'
 BASE_URL = 'https://api.spotify.com/v1/artists/'
@@ -36,9 +37,10 @@ def get_songs():
         song_artist = song['album']['artists'][0]['name']
         song_image = song['album']['images'][0]['url']
         song_preview = song['preview_url']
+        song_lyrics = get_lyrics(song_name)
         
         
-        song_info = (song_artist, song_image, song_preview)
+        song_info = (song_artist, song_image, song_preview, song_lyrics)
         
         # Dictionary containing each song as key and it's information in list format as the value
         songs[song_name] = song_info
