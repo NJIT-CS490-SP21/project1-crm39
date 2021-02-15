@@ -1,11 +1,13 @@
 from flask import Flask, render_template
 from spotify import get_songs
+from genius import get_lyrics
 import os
 
 app = Flask(__name__)
 
 @app.route('/')
 def main_page():
+    get_lyrics()
     songs = get_songs()
     
     return render_template(
