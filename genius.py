@@ -10,6 +10,7 @@ load_dotenv(find_dotenv())
 def get_lyrics(song_name):
     
     song_name.replace(' ', '%20') # %20 is the space character for the get request
+    # try using params. It'll avoid the need for the replace function
     
     headers = {
         'Authorization' : 'Bearer {token}'.format(token=os.getenv('GENIUS_ACCESS_TOKEN'))
