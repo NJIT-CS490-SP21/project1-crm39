@@ -7,11 +7,14 @@ app = Flask(__name__)
 @app.route('/')
 def main_page():
     songs = get_songs()
+    first_song = list(songs.keys())[0]
+    artist = songs[first_song][0]
     
     return render_template(
         'index.html',
         len = len(songs),
-        songs = songs
+        songs = songs,
+        artist = artist
     )
     
 app.run(

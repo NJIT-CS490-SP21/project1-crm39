@@ -5,7 +5,7 @@
     </head>
     
     <h1 id="artist">
-        Artist Name:
+        {{ artist }}
     </h1>
     
     <body>
@@ -14,23 +14,30 @@
     
     
     
-    <ul class='container' style="list-style-type:none;">
+    <ul class='container' style="list-style-type:none;" onload="checkArtist()">
         {%for key, value in songs.items()%}
         <li class='box'>
-            {% if not artist %}
+            <!-- {% if not artist %}
                 {% set artist = value[0] %}
-            {% endif %}
-            <img src={{value[1]}} style="width:120px;height120px"/> 
+            {% endif %} -->
             <ul style="list-style-type:none;">
-                <li>{{key}}</li>
-                <li>Artist: {{value[0]}}</li>
+                <div class="song_img_container">
+                    <img src={{value[1]}} style="width:180px;height180px" class="song_img"/>
+                
+                    <div class="middle">
+                        <div class="text"><a href='{{value[3]}}'>Lyrics</a></div>
+                    </div>
+                </div>
+                <div class="song_title">
+                    <li>{{key}}</li>
+                </div>
                 <li>
                     <audio controls>
                         <source src={{value[2]}}>
                     </audio>
                 </li>
                 <li>
-                    <a href='{{value[3]}}'>Lyrics</a>
+                    
                 </li>
             </ul>
         </li>

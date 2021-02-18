@@ -12,7 +12,8 @@ load_dotenv(find_dotenv())
 def get_songs():
     
     songs = {}
-    artist_ids = ('6TIYQ3jFPwQSRmorSezPxX', '6XyY86QOPPrYVGvF9ch6wz', '6C1ohJrd5VydigQtaGy5Wa')
+    artist_ids = ('6TIYQ3jFPwQSRmorSezPxX', '6XyY86QOPPrYVGvF9ch6wz', '6C1ohJrd5VydigQtaGy5Wa', 
+                  '1Ffb6ejR6Fe5IamqA5oRUF', '4xRYI6VqpkE3UwrDrAZL8L', '2AfU5LYBVCiCtuCCfM7uVX')
     artist_id = artist_ids[random.randint(0,len(artist_ids)-1)]
     
     auth_response = requests.post(AUTH_URL, {
@@ -46,11 +47,3 @@ def get_songs():
         songs[song_name] = song_info
 
     return songs
-    
-    # song name, artist, song-related image, preview URL
-    
-    # Linking Park: 6XyY86QOPPrYVGvF9ch6wz
-    
-    # MGK: 6TIYQ3jFPwQSRmorSezPxX
-    
-    # Joyner Lucas: 6C1ohJrd5VydigQtaGy5Wa
