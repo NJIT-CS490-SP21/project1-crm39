@@ -6,7 +6,7 @@ This usually takes me a while
 - Download the following:
     * heroku
     * flask
-    * python.env
+    * python-dotenv
     * requests
 - Clone this repo
 - Setup for API requests (local):
