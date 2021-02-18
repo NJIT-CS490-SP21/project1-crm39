@@ -7,6 +7,8 @@ app = Flask(__name__)
 @app.route('/')
 def main_page():
     songs = get_songs()
+    
+    # Getting artist name to pass to render_template
     first_song = list(songs.keys())[0]
     artist = songs[first_song][0]
     

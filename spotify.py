@@ -29,10 +29,11 @@ def get_songs():
         'Authorization' : 'Bearer {token}'.format(token=access_token)
     }
     
+    # REST call to spotify API
     songs_data = requests.get(BASE_URL + artist_id + '/top-tracks?market=US', headers=headers)
-    
     songs_json = songs_data.json()
     
+    # Parse JSON and get wanted information
     for song in songs_json['tracks']:
         song_name = song['name']
         song_artist = song['album']['artists'][0]['name']
@@ -40,10 +41,10 @@ def get_songs():
         song_preview = song['preview_url']
         song_lyrics = get_lyrics(song_name)
         
-        
+        # Storing song info as a list
         song_info = (song_artist, song_image, song_preview, song_lyrics)
         
-        # Dictionary containing each song as key and it's information in list format as the value
+        # Adding list to dictionary containing each song as key and it's information as the value
         songs[song_name] = song_info
 
     return songs

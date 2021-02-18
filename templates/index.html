@@ -9,17 +9,11 @@
     </h1>
     
     <body>
-        <!-- <b>HTML (test)</b> -->
     </body>
-    
-    
     
     <ul class='container' style="list-style-type:none;" onload="checkArtist()">
         {%for key, value in songs.items()%}
         <li class='box'>
-            <!-- {% if not artist %}
-                {% set artist = value[0] %}
-            {% endif %} -->
             <ul style="list-style-type:none;">
                 <div class="song_img_container">
                     <img src={{value[1]}} style="width:180px;height180px" class="song_img"/>
